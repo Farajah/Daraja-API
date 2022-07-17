@@ -75,13 +75,11 @@
       <div class="card mt-5 px-3 py-4">
         <div class="d-flex flex-row justify-content-around">
           <div class="mpesa"><span>Mpesa </span></div>
-          <div><span>Paypal</span></div>
-          <div><span>Card</span></div>
         </div>
         <div class="media mt-4 pl-2">
           <img src="./images/1200px-M-PESA_LOGO-01.svg.png" class="mr-3" height="75" />
           <div class="media-body">
-            <h6 class="mt-1">Enter Amount & Number</h6>
+            <h6 class="mt-1">Enter Number</h6>
           </div>
         </div>
         <div class="media mt-3 pl-2">
@@ -91,7 +89,7 @@
             
                 <div class="col-12">
                   <label for="inputAddress" class="form-label">Amount</label>
-                  <input type="text" class="form-control" name="amount" placeholder="Enter Amount">
+                  <input type="text" class="form-control" name="amount" placeholder="Enter Amount" id="amount" value="<?php echo getFareAmount(); ?>" readonly>
                 </div>
                 <div class="col-12">
                   <label for="inputAddress2" class="form-label" >Phone Number</label>
@@ -116,3 +114,12 @@
     <script type="text/Javascript"></script>
   </body>
 </html>
+
+<?php
+  function getFareAmount(){
+    $url = $_SERVER['REQUEST_URI'];;
+    $url_components = parse_url($url);
+    parse_str($url_components['query'], $params);
+    echo $params['amount'];
+  }
+?>
